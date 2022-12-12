@@ -90,7 +90,6 @@ class CommentsController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-        $comment->images()->delete();
         return response('Comment deleted');
     }
 }
