@@ -21,8 +21,11 @@ class DatabaseSeeder extends Seeder
         // $this->call([
         //     GallerySeeder::class
         // ]);
+        // $this->call([
+        //     ImageSeeder::class
+        // ]);
         $this->call([
-            ImageSeeder::class
+            CommentSeeder::class
         ]);
 
     }

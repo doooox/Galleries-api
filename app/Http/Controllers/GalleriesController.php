@@ -84,7 +84,7 @@ class GalleriesController extends Controller
      */
     public function show($id)
     {
-        $gallery = Gallery::with('user', 'images')->findOrFail($id);
+        $gallery = Gallery::with('user', 'images', 'comments', 'comments.user')->findOrFail($id);
         return response()->json(($gallery));
     }
 

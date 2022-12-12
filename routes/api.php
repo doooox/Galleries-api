@@ -5,6 +5,7 @@ use App\Http\Controllers\GalleriesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/galleries', [GalleriesController::class, 'index']);
+Route::get('/authors/{user_id}', [UserController::class, 'userGalleries']);
+Route::get('/galleries/{gallery}', [GalleriesController::class, 'show']);
+
 
 
 Route::middleware('guest')->group(function () {
@@ -30,10 +34,10 @@ Route::middleware('guest')->group(function () {
 });
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('/create', [GalleriesController::class, 'store']);
+    Route::post('/galleries', [GalleriesController::class, 'store']);
     Route::get('/my-galleries', [GalleriesController::class, 'myGalleries']);
-    Route::get('/authors/{user_id}', [UserController::class, 'userGalleries']);
-    Route::get('/galleries/{gallery}', [GalleriesController::class, 'show']);
-    Route::post('/edit/{gallery}', [GalleriesController::class, 'update']);
-    Route::post('/delete/{gallery}', [GalleriesController::class, 'destroy']);
+    Route::post('/galleries/{gallery}', [GalleriesController::class, 'update']);
+    Route::delete('/galleries/{gallery}', [GalleriesController::class, 'destroy']);
+    Route::post('/comments/{gallery}', [CommentsController::class, 'store']);
+    Route::post('/comments/delete/{comment}', [CommentsController::class, 'destroy']);
 });
