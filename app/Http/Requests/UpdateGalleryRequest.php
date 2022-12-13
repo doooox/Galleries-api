@@ -24,10 +24,10 @@ class UpdateGalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|min:2|max:255',
-            'description' => 'string|max:1000|nullable',
-            'images' => 'sometimes|array',
-            'images.*.image_url' => 'sometimes|url|ends_with:png,jpg,jpeg'
+            'name' => 'required|min:2|max:255',
+            'description' => 'nullable|max:1000',
+            'images' => 'required|array',
+            'images.*.images_url' => '|url|ends_with:png,jpg,jpeg'
         ];
     }
     public function messages()
